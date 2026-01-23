@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redumé - Find Your First Job</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===================================
+           RESET & BASE STYLES
+           =================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors - matching prototype exactly */
+            --header-blue: #8BA9C4;
+            --button-blue: #7B95B0;
+            --button-light: #B8CFE3;
+            --bright-yellow: #FFC107;
+            --gold: #FFC107;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #333333;
+            --text-gray: #666666;
+            --card-shadow: rgba(0, 0, 0, 0.08);
+            
+            /* Typography */
+            --font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        button {
+            font-family: var(--font-family);
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        input {
+            font-family: var(--font-family);
+            outline: none;
+        }
+
+        /* ===================================
+           HEADER
+           =================================== */
+        .header {
+            background: linear-gradient(180deg, #8BA9C4 0%, #A5BCCF 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 12px 28px;
+            border-radius: var(--radius-full);
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn-outline {
+            background: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+            border: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn-outline:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn-filled {
+            background: var(--button-blue);
+            color: var(--white);
+        }
+
+        .nav-btn-filled:hover {
+            background: #6a84a0;
+            transform: translateY(-1px);
+        }
+
+        .nav-btn-donate {
+            background: var(--bright-yellow);
+            color: var(--dark-gray);
+            font-weight: 600;
+        }
+
+        .nav-btn-donate:hover {
+            background: #FFB300;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+        }
+
+        /* ===================================
+           SEARCH SECTION
+           =================================== */
+        .search-section {
+            background: var(--white);
+            padding: var(--spacing-lg) 0;
+        }
+
+        .search-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .menu-icon,
+        .profile-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--button-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon:hover,
+        .profile-icon:hover {
+            background: #8BA9C4;
+            transform: scale(1.05);
+        }
+
+        .search-bar {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            border: 2px solid var(--medium-gray);
+            border-radius: var(--radius-xl);
+            padding: 0 var(--spacing-md);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--button-blue);
+            box-shadow: 0 0 0 3px rgba(123, 149, 176, 0.15);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 14px var(--spacing-md);
+            font-size: 16px;
+            color: var(--dark-gray);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-gray);
+            opacity: 0.7;
+        }
+
+        .search-btn {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            color: var(--button-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .search-btn:hover {
+            background: var(--light-gray);
+            color: var(--button-blue);
+        }
+
+        /* ===================================
+           FILTER TABS
+           =================================== */
+        .filter-section {
+            background: var(--white);
+            padding: 0 0 var(--spacing-lg) 0;
+        }
+
+        .filter-tabs {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .filter-tab {
+            padding: 12px var(--spacing-xl);
+            border-radius: var(--radius-full);
+            font-size: 16px;
+            font-weight: 500;
+            background: var(--white);
+            color: var(--text-gray);
+            border: 2px solid var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--button-light);
+            color: var(--button-blue);
+        }
+
+        .filter-tab.active {
+            background: var(--button-light);
+            color: var(--white);
+            border-color: var(--button-light);
+        }
+
+        /* ===================================
+           MAIN CONTENT & JOB LISTINGS
+           =================================== */
+        .main-content {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .jobs-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: var(--spacing-xl);
+        }
+
+        /* Job Grid (Left Column) */
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        /* Job Cards */
+        .job-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Image Cards */
+        .image-card {
+            box-shadow: var(--shadow-md);
+        }
+
+        .job-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .job-content {
+            padding: var(--spacing-md);
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .job-company {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 15px;
+            color: var(--text-gray);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .job-location {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-sm);
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .job-pay {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .job-age {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--button-blue);
+            background: rgba(139, 169, 196, 0.12);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+        }
+
+        /* Text Cards (Sidebar) */
+        .jobs-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .text-card {
+            padding: 0;
+            border: 1px solid var(--medium-gray);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .text-card-image {
+            width: 100%;
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .text-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+            padding: var(--spacing-lg) var(--spacing-lg) 0 var(--spacing-lg);
+        }
+
+        .text-card .job-title {
+            flex: 1;
+            margin-bottom: 0;
+            font-size: 17px;
+        }
+
+        .text-card .job-age {
+            font-size: 16px;
+            margin-left: var(--spacing-sm);
+        }
+
+        .text-card .job-company {
+            margin-bottom: var(--spacing-xs);
+            padding: 0 var(--spacing-lg);
+        }
+
+        .text-card .job-location {
+            margin-bottom: var(--spacing-xs);
+            padding: 0 var(--spacing-lg);
+        }
+
+        .text-card .job-pay {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            padding: 0 var(--spacing-lg);
+        }
+
+        .job-requirements {
+            list-style: none;
+            padding-left: 0;
+            padding: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+        }
+
+        .job-requirements li {
+            font-size: 14px;
+            color: var(--text-gray);
+            padding-left: var(--spacing-md);
+            position: relative;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .job-requirements li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--button-blue);
+            font-weight: 700;
+        }
+
+        /* ===================================
+           RESPONSIVE DESIGN
+           =================================== */
+
+        /* Tablet (768px - 1023px) */
+        @media (max-width: 1200px) {
+            .jobs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .jobs-sidebar {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: var(--spacing-md);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .header-container {
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .nav-menu {
+                gap: var(--spacing-sm);
+            }
+            
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+            
+            .search-container {
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .filter-tabs {
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .jobs-container {
+                padding: 0 var(--spacing-lg);
+            }
+            
+            .jobs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: var(--spacing-md);
+            }
+        }
+
+        /* Mobile (320px - 767px) */
+        @media (max-width: 768px) {
+            .header {
+                padding: var(--spacing-md) 0;
+            }
+            
+            .header-container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .nav-menu {
+                gap: var(--spacing-xs);
+            }
+            
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .nav-btn-donate {
+                position: absolute;
+                top: var(--spacing-md);
+                right: var(--spacing-md);
+            }
+            
+            .search-section {
+                padding: var(--spacing-md) 0;
+            }
+            
+            .search-container {
+                padding: 0 var(--spacing-md);
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 2;
+                width: 100%;
+                margin-top: var(--spacing-md);
+            }
+            
+            .search-input {
+                font-size: 14px;
+            }
+            
+            .search-input::placeholder {
+                font-size: 13px;
+            }
+            
+            .filter-section {
+                padding: 0 0 var(--spacing-md) 0;
+            }
+            
+            .filter-tabs {
+                padding: 0 var(--spacing-md);
+                gap: var(--spacing-sm);
+            }
+            
+            .filter-tab {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .main-content {
+                padding: var(--spacing-md) 0;
+            }
+            
+            .jobs-container {
+                padding: 0 var(--spacing-md);
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .jobs-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .jobs-sidebar {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .nav-btn:not(.nav-btn-donate) {
+                font-size: 13px;
+                padding: 7px 12px;
+            }
+            
+            .search-input::placeholder {
+                font-size: 12px;
+            }
+        }
+
+        /* ===================================
+           ANIMATIONS
+           =================================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .job-card {
+            animation: fadeIn 0.4s ease-out backwards;
+        }
+
+        .job-card:nth-child(1) { animation-delay: 0.05s; }
+        .job-card:nth-child(2) { animation-delay: 0.1s; }
+        .job-card:nth-child(3) { animation-delay: 0.15s; }
+        .job-card:nth-child(4) { animation-delay: 0.2s; }
+        .job-card:nth-child(5) { animation-delay: 0.25s; }
+        .job-card:nth-child(6) { animation-delay: 0.3s; }
+
+        /* Hide saved jobs initially */
+        .job-card.saved {
+            display: none;
+        }
+
+        /* ===================================
+           UTILITY CLASSES
+           =================================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* ===================================
+           JOB DETAIL MODAL
+           =================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: var(--header-blue);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            color: var(--white);
+        }
+
+        .modal-back {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-back:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-job-title {
+            flex: 1;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .modal-bookmark {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bright-yellow);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-bookmark:hover {
+            background: #FFB300;
+            transform: scale(1.05);
+        }
+
+        .modal-bookmark.bookmarked {
+            background: #FFB300;
+        }
+
+        .modal-bookmark.bookmarked svg {
+            fill: white;
+        }
+
+        .modal-title-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            display: none;
+        }
+
+        .modal-title-image.visible {
+            display: block;
+        }
+
+        .modal-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--medium-gray);
+        }
+
+        .modal-image {
+            aspect-ratio: 1;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .modal-image.more-images {
+            background-color: var(--button-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: var(--spacing-xl);
+            max-height: calc(90vh - 300px);
+            overflow-y: auto;
+        }
+
+        .modal-posted-by {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--button-blue);
+            font-size: 16px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-posted-by strong {
+            color: var(--button-blue);
+        }
+
+        .modal-location {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--text-gray);
+            font-size: 15px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .modal-location svg {
+            color: var(--button-blue);
+            flex-shrink: 0;
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background: var(--light-gray);
+            border-radius: var(--radius-md);
+        }
+
+        .modal-info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-info-label {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .modal-info-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .modal-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .modal-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-section p {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .modal-requirements-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modal-requirements-list li {
+            font-size: 15px;
+            color: var(--text-gray);
+            padding-left: var(--spacing-lg);
+            position: relative;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
+        }
+
+        .modal-requirements-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--button-blue);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .modal-apply-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--button-blue);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: var(--spacing-lg);
+        }
+
+        .modal-apply-btn:hover {
+            background: #6a84a0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(123, 149, 176, 0.3);
+        }
+
+        /* Modal Responsive */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 100%;
+                max-width: 100%;
+                height: 100%;
+                max-height: 100%;
+                border-radius: 0;
+            }
+
+            .modal-job-title {
+                font-size: 20px;
+            }
+
+            .modal-body {
+                max-height: calc(100vh - 300px);
+            }
+
+            .modal-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">Redumé</div>
+            <nav class="nav-menu">
+                <button class="nav-btn nav-btn-outline">resources</button>
+                <button class="nav-btn nav-btn-outline">materials</button>
+                <button class="nav-btn nav-btn-filled">home</button>
+                <button class="nav-btn nav-btn-donate">register</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <button class="menu-icon" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="start with keywords like 'no experience required jobs' 'near metro/train station'..."
+                >
+                <button class="search-btn" aria-label="Search">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="profile-icon" aria-label="Profile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M6 21C6 17.686 8.686 15 12 15C15.314 15 18 17.686 18 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="filter-section">
+        <div class="filter-tabs">
+            <button class="filter-tab active">for you</button>
+            <button class="filter-tab">saved</button>
+            <button class="filter-tab">pending</button>
+        </div>
+    </section>
+
+    <!-- Job Listings -->
+    <main class="main-content">
+        <div class="jobs-container">
+            <!-- Left Column - Image Cards -->
+            <div class="jobs-grid">
+                <!-- Job Card 1 -->
+                <article class="job-card image-card" data-job-title="Junior Barista">
+                    <div class="job-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="job-content">
+                        <h3 class="job-title">Junior Barista</h3>
+                        <div class="job-company">
+                            <span>Starbucks</span>
+                            <span class="verified-badge">✓</span>
+                        </div>
+                        <div class="job-location">Macquarie</div>
+                        <div class="job-footer">
+                            <span class="job-pay">$20/hr</span>
+                            <span class="job-age">16+</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Job Card 2 -->
+                <article class="job-card image-card" data-job-title="Junior Accountant">
+                    <div class="job-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="job-content">
+                        <h3 class="job-title">Junior Accountant</h3>
+                        <div class="job-company">
+                            <span>McDonalds</span>
+                            <span class="verified-badge">✓</span>
+                        </div>
+                        <div class="job-location">Haymarket</div>
+                        <div class="job-footer">
+                            <span class="job-pay">$18/hr</span>
+                            <span class="job-age">16+</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Job Card 3 -->
+                <article class="job-card image-card" data-job-title="Junior Bobarista">
+                    <div class="job-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="job-content">
+                        <h3 class="job-title">Junior Bobarista</h3>
+                        <div class="job-company">
+                            <span>Boba Squad</span>
+                            <span class="verified-badge">✓</span>
+                        </div>
+                        <div class="job-location">Epping</div>
+                        <div class="job-footer">
+                            <span class="job-pay">$16/hr</span>
+                            <span class="job-age">15+</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Job Card 4 -->
+                <article class="job-card image-card" data-job-title="Sports Coach">
+                    <div class="job-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="job-content">
+                        <h3 class="job-title">Sports Coach</h3>
+                        <div class="job-company">
+                            <span>Active Kids Sports</span>
+                        </div>
+                        <div class="job-location">Parramatta</div>
+                        <div class="job-footer">
+                            <span class="job-pay">$22/hr</span>
+                            <span class="job-age">17+</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Job Card 5 -->
+                <article class="job-card image-card" data-job-title="Cashier">
+                    <div class="job-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1556740714-a8395b3bf30f?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="job-content">
+                        <h3 class="job-title">Cashier</h3>
+                        <div class="job-company">
+                            <span>Coles</span>
+                            <span class="verified-badge">✓</span>
+                        </div>
+                        <div class="job-location">Chatswood</div>
+                        <div class="job-footer">
+                            <span class="job-pay">$17/hr</span>
+                            <span class="job-age">16+</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Job Card 6 -->
+                <article class="job-card image-card" data-job-title="Retail Assistant">
+                    <div class="job-image" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="job-content">
+                        <h3 class="job-title">Retail Assistant</h3>
+                        <div class="job-company">
+                            <span>Kmart</span>
+                            <span class="verified-badge">✓</span>
+                        </div>
+                        <div class="job-location">Westfield Sydney</div>
+                        <div class="job-footer">
+                            <span class="job-pay">$19/hr</span>
+                            <span class="job-age">16+</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Right Column - Text Cards -->
+            <aside class="jobs-sidebar">
+                <!-- Text Card 1 -->
+                <article class="job-card text-card" data-job-title="Tutor for 8 year old">
+                    <div class="text-card-image" style="background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="text-card-header">
+                        <h3 class="job-title">Tutor for 8 year old</h3>
+                        <span class="job-age">16+</span>
+                    </div>
+                    <div class="job-company">
+                        <span>Private business</span>
+                    </div>
+                    <div class="job-location">Chatswood</div>
+                    <div class="job-pay">$15/hr</div>
+                    <ul class="job-requirements">
+                        <li>tutoring experience preferred</li>
+                    </ul>
+                </article>
+
+                <!-- Text Card 2 -->
+                <article class="job-card text-card" data-job-title="Casual Babysitter">
+                    <div class="text-card-image" style="background: url('https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="text-card-header">
+                        <h3 class="job-title">Casual Babysitter</h3>
+                        <span class="job-age">14+</span>
+                    </div>
+                    <div class="job-company">
+                        <span>Private business</span>
+                        <span class="verified-badge">✓</span>
+                    </div>
+                    <div class="job-location">Eastwood</div>
+                    <div class="job-pay">$20/hr</div>
+                    <ul class="job-requirements">
+                        <li>no experience required</li>
+                        <li>training provided</li>
+                    </ul>
+                </article>
+
+                <!-- Text Card 3 -->
+                <article class="job-card text-card" data-job-title="Kitchen Hand">
+                    <div class="text-card-image" style="background: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="text-card-header">
+                        <h3 class="job-title">Kitchen Hand</h3>
+                        <span class="job-age">16+</span>
+                    </div>
+                    <div class="job-company">
+                        <span>The Local Cafe</span>
+                        <span class="verified-badge">✓</span>
+                    </div>
+                    <div class="job-location">Newtown</div>
+                    <div class="job-pay">$18/hr</div>
+                    <ul class="job-requirements">
+                        <li>weekend shifts available</li>
+                        <li>no experience required</li>
+                    </ul>
+                </article>
+
+                <!-- Text Card 4 -->
+                <article class="job-card text-card" data-job-title="Delivery Driver">
+                    <div class="text-card-image" style="background: url('https://images.unsplash.com/photo-1526367790999-0150786686a2?w=400'); background-size: cover; background-position: center;"></div>
+                    <div class="text-card-header">
+                        <h3 class="job-title">Delivery Driver</h3>
+                        <span class="job-age">18+</span>
+                    </div>
+                    <div class="job-company">
+                        <span>UberEats</span>
+                    </div>
+                    <div class="job-location">Sydney CBD</div>
+                    <div class="job-pay">$25/hr + tips</div>
+                    <ul class="job-requirements">
+                        <li>own vehicle required</li>
+                        <li>flexible hours</li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Job Detail Modal -->
+    <div id="jobModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-back" aria-label="Go back">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <h2 id="modalJobTitle" class="modal-job-title">Job Title</h2>
+                <button class="modal-bookmark" id="modalBookmark" aria-label="Bookmark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-title-image" id="modalTitleImage">
+                <!-- Title image will be inserted here -->
+            </div>
+
+            <div class="modal-images" id="modalImages">
+                <!-- Images will be inserted here -->
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-posted-by">
+                    <span>Posted by: <strong id="modalCompany"></strong></span>
+                    <span class="verified-badge" id="modalVerified" style="display: none;">✓</span>
+                </div>
+
+                <div class="modal-location">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span id="modalLocationText"></span>
+                </div>
+
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Hourly rate:</span>
+                        <span class="modal-info-value" id="modalPay"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Job type:</span>
+                        <span class="modal-info-value" id="modalJobType"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Age required:</span>
+                        <span class="modal-info-value" id="modalAge"></span>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Job Description:</h3>
+                    <p id="modalDescription"></p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Employer Contact:</h3>
+                    <p><strong>Name:</strong> <span id="modalEmployerName"></span></p>
+                    <p><strong>Email:</strong> <span id="modalEmployerEmail"></span></p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Skill Requirements:</h3>
+                    <ul id="modalRequirements" class="modal-requirements-list">
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Interview Requirements:</h3>
+                    <ul id="modalInterviewReqs" class="modal-requirements-list">
+                    </ul>
+                </div>
+
+                <button class="modal-apply-btn">APPLY</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div id="sidebarMenu" class="sidebar-overlay">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Menu</h2>
+                <button class="sidebar-close" aria-label="Close menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Home
+                </a>
+                <a href="#" class="sidebar-link" id="profileLink">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M3 21C3 17.134 7.029 14 12 14C16.971 14 21 17.134 21 21" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Profile
+                </a>
+                <a href="#" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Saved Jobs
+                </a>
+                <a href="#" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Applications
+                </a>
+                <a href="#" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C10.0222 2 8.08879 2.58649 6.4443 3.6853C4.79981 4.78412 3.51809 6.3459 2.76121 8.17317C2.00433 10.0004 1.8063 12.0111 2.19215 13.9509C2.578 15.8907 3.53041 17.6725 4.92894 19.0711C6.32746 20.4696 8.10929 21.422 10.0491 21.8079C11.9889 22.1937 13.9996 21.9957 15.8268 21.2388C17.6541 20.4819 19.2159 19.2002 20.3147 17.5557C21.4135 15.9112 22 13.9778 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Resources
+                </a>
+                <a href="#" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                        <path d="M19.4 15C19.13 15.5 19.11 16.12 19.35 16.66L19.79 17.62C20.03 18.16 19.93 18.79 19.53 19.23C19.13 19.67 18.5 19.8 17.95 19.56L16.99 19.12C16.45 18.88 15.83 18.91 15.32 19.18C14.81 19.45 14.47 19.94 14.42 20.5L14.34 21.54C14.29 22.12 13.86 22.56 13.28 22.61C12.7 22.66 12.17 22.37 11.91 21.85L11.47 20.89C11.21 20.37 10.74 20 10.17 19.91C9.6 19.82 9.03 20.02 8.66 20.44L7.99 21.18C7.63 21.6 7.04 21.74 6.51 21.53C5.98 21.32 5.63 20.82 5.61 20.25L5.59 19.21C5.57 18.64 5.27 18.13 4.78 17.85C4.29 17.57 3.69 17.56 3.19 17.83L2.23 18.31C1.68 18.59 1.04 18.49 0.6 18.07C0.16 17.65 0 17 0.27 16.45L0.71 15.49C0.98 14.95 1 14.33 0.73 13.82C0.46 13.31 -0.03 12.97 -0.59 12.92L-1.63 12.84C-2.21 12.79 -2.65 12.36 -2.7 11.78C-2.75 11.2 -2.46 10.67 -1.94 10.41L-0.98 9.97C-0.46 9.71 -0.09 9.24 0 8.67C0.09 8.1 -0.11 7.53 -0.53 7.16L-1.27 6.49C-1.69 6.13 -1.83 5.54 -1.62 5.01C-1.41 4.48 -0.91 4.13 -0.34 4.11L0.7 4.09C1.27 4.07 1.78 3.77 2.06 3.28C2.34 2.79 2.35 2.19 2.08 1.69L1.6 0.73C1.32 0.18 1.42 -0.46 1.84 -0.9C2.26 -1.34 2.91 -1.5 3.46 -1.23L4.42 -0.79C4.96 -0.52 5.58 -0.5 6.09 -0.77C6.6 -1.04 6.94 -1.53 6.99 -2.09L7.07 -3.13C7.12 -3.71 7.55 -4.15 8.13 -4.2C8.71 -4.25 9.24 -3.96 9.5 -3.44L9.94 -2.48C10.2 -1.96 10.67 -1.59 11.24 -1.5C11.81 -1.41 12.38 -1.61 12.75 -2.03L13.42 -2.77C13.78 -3.19 14.37 -3.33 14.9 -3.12C15.43 -2.91 15.78 -2.41 15.8 -1.84L15.82 -0.8C15.84 -0.23 16.14 0.28 16.63 0.56C17.12 0.84 17.72 0.85 18.22 0.58L19.18 0.1C19.73 -0.18 20.37 -0.08 20.81 0.34C21.25 0.76 21.41 1.41 21.14 1.96L20.7 2.92C20.43 3.46 20.41 4.08 20.68 4.59C20.95 5.1 21.44 5.44 22 5.49L23.04 5.57C23.62 5.62 24.06 6.05 24.11 6.63C24.16 7.21 23.87 7.74 23.35 8L22.39 8.44C21.87 8.7 21.5 9.17 21.41 9.74C21.32 10.31 21.52 10.88 21.94 11.25L22.68 11.92C23.1 12.28 23.24 12.87 23.03 13.4C22.82 13.93 22.32 14.28 21.75 14.3L20.71 14.32C20.14 14.34 19.63 14.64 19.35 15.13C19.07 15.62 19.06 16.22 19.33 16.72L19.81 17.68C20.09 18.23 19.99 18.87 19.57 19.31C19.15 19.75 18.5 19.91 17.95 19.64L16.99 19.2C16.45 18.93 15.83 18.95 15.32 19.22C14.81 19.49 14.47 19.98 14.42 20.54L14.34 21.58Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Settings
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="profile-page-overlay" style="display: none;">
+        <div class="profile-page">
+            <div class="profile-header">
+                <button class="profile-back" aria-label="Go back">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <h2>My Profile</h2>
+            </div>
+            <div class="profile-content">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 21C3 17.134 7.029 14 12 14C16.971 14 21 17.134 21 21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <button class="change-photo-btn">Change Photo</button>
+                </div>
+
+                <div class="profile-form">
+                    <div class="profile-field">
+                        <label for="profileName">Name</label>
+                        <div class="profile-field-content">
+                            <input type="text" id="profileName" value="Alex Johnson" disabled>
+                            <button class="edit-btn" data-field="profileName">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.5 2.5C18.8978 2.10217 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10217 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10217 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="profileEmail">Email</label>
+                        <div class="profile-field-content">
+                            <input type="email" id="profileEmail" value="alex.johnson@email.com" disabled>
+                            <button class="edit-btn" data-field="profileEmail">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.5 2.5C18.8978 2.10217 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10217 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10217 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="profilePhone">Phone</label>
+                        <div class="profile-field-content">
+                            <input type="tel" id="profilePhone" value="+61 412 345 678" disabled>
+                            <button class="edit-btn" data-field="profilePhone">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.5 2.5C18.8978 2.10217 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10217 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10217 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="profile-field">
+                        <label for="profileLocation">Location</label>
+                        <div class="profile-field-content">
+                            <input type="text" id="profileLocation" value="Sydney, NSW" disabled>
+                            <button class="edit-btn" data-field="profileLocation">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18.5 2.5C18.8978 2.10217 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10217 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10217 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="profile-logout-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-back" aria-label="Go back">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <h2 id="modalJobTitle" class="modal-job-title">Job Title</h2>
+                <button class="modal-bookmark" id="modalBookmark" aria-label="Bookmark">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-title-image" id="modalTitleImage">
+                <!-- Title image will be inserted here -->
+            </div>
+
+            <div class="modal-images" id="modalImages">
+                <!-- Images will be inserted here -->
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-posted-by">
+                    <span>Posted by: <strong id="modalCompany"></strong></span>
+                    <span class="verified-badge" id="modalVerified" style="display: none;">✓</span>
+                </div>
+
+                <div class="modal-location">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span id="modalLocationText"></span>
+                </div>
+
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Hourly rate:</span>
+                        <span class="modal-info-value" id="modalPay"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Job type:</span>
+                        <span class="modal-info-value" id="modalJobType"></span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Age required:</span>
+                        <span class="modal-info-value" id="modalAge"></span>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Job Description:</h3>
+                    <p id="modalDescription"></p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Employer Contact:</h3>
+                    <p><strong>Name:</strong> <span id="modalEmployerName"></span></p>
+                    <p><strong>Email:</strong> <span id="modalEmployerEmail"></span></p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Skill Requirements:</h3>
+                    <ul id="modalRequirements" class="modal-requirements-list">
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Interview Requirements:</h3>
+                    <ul id="modalInterviewReqs" class="modal-requirements-list">
+                    </ul>
+                </div>
+
+                <button class="modal-apply-btn">APPLY</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Wrap everything in DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            
+        // ===================================
+        // JOB DATA
+        // ===================================
+        const jobData = {
+            'Junior Barista': {
+                company: 'Starbucks',
+                verified: true,
+                location: 'Macquarie Centre, Macquarie Park NSW',
+                pay: '$20/hr',
+                jobType: 'Casual',
+                age: '16+ years',
+                description: 'Starbucks Macquarie is looking to hire a new casual barista for the upcoming holiday period. We are searching for an enthusiastic, bright person with good social skills to join our team. This is a great opportunity to learn coffee-making skills in a supportive environment. Flexible hours available to suit students.',
+                requirements: ['Teamwork skills', 'Good communication', 'Punctual and reliable', 'Customer service experience preferred', 'Able to work in a fast-paced environment'],
+                employerName: 'Sarah Chen',
+                employerEmail: 'hiring.macquarie@starbucks.com.au',
+                interviewRequirements: ['Bring valid ID and proof of age', 'Dress in business casual attire', 'Prepare to discuss your availability', 'Be ready to demonstrate customer service skills'],
+                titleImage: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400',
+                    'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=400',
+                    'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400',
+                    'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400'
+                ]
+            },
+            'Junior Accountant': {
+                company: 'McDonalds',
+                verified: true,
+                location: 'Haymarket, 123 George St, Sydney NSW',
+                pay: '$18/hr',
+                jobType: 'Part-time',
+                age: '16+ years',
+                description: 'Join our team at McDonald\'s Haymarket! We\'re looking for enthusiastic team members to work in our busy restaurant. Perfect for students seeking flexible hours and a fun work environment. Full training provided on all stations including front counter, drive-thru, and kitchen. Great opportunity to develop hospitality skills.',
+                requirements: ['Ability to work in a fast-paced environment', 'Friendly personality', 'Available weekends', 'No experience required', 'Team player attitude'],
+                employerName: 'James Rodriguez',
+                employerEmail: 'recruitment.haymarket@mcdonalds.com.au',
+                interviewRequirements: ['Bring proof of age (birth certificate or ID)', 'Resume (if available)', 'Come prepared to discuss availability', 'Wear neat, casual clothing'],
+                titleImage: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=400',
+                    'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400',
+                    'https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?w=400',
+                    'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400'
+                ]
+            },
+            'Junior Bobarista': {
+                company: 'Boba Squad',
+                verified: true,
+                location: 'Epping Court, 6 Flower Rd, Epping NSW',
+                pay: '$16/hr',
+                jobType: 'Casual',
+                age: '15+ years',
+                description: 'Boba Squad Epping is looking for a cheerful and energetic team member! Learn to make delicious bubble tea while working in a fun, vibrant environment. We provide full training on all our signature drinks and toppings. Perfect for students who love boba tea and want to be part of a young, dynamic team. Flexible shifts available.',
+                requirements: ['Enthusiasm and positive attitude', 'Basic math skills for handling cash', 'Willing to learn new recipes', 'Flexible availability including weekends', 'Enjoy working with customers'],
+                employerName: 'Michelle Park',
+                employerEmail: 'jobs.epping@bobasquad.com.au',
+                interviewRequirements: ['Casual interview - just be yourself!', 'Bring valid ID', 'Tell us about your favorite bubble tea flavors', 'Discuss your availability'],
+                titleImage: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400',
+                    'https://images.unsplash.com/photo-1525385133512-2f3bdd039054?w=400',
+                    'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400'
+                ]
+            },
+            'Sports Coach': {
+                company: 'Active Kids Sports',
+                verified: false,
+                location: 'Parramatta Park, Parramatta NSW',
+                pay: '$22/hr',
+                jobType: 'Casual',
+                age: '17+ years',
+                description: 'Looking for energetic and passionate individuals to coach kids aged 5-12 in various sports activities including soccer, basketball, and athletics. Great opportunity to inspire young athletes while staying active yourself! Sessions run on weekends and after school hours. Perfect for those studying education, sports science, or anyone who loves working with children.',
+                requirements: ['Experience with children', 'Knowledge of basic sports and games', 'WWC Check required', 'First Aid certificate preferred', 'Energetic and motivating personality'],
+                employerName: 'David Thompson',
+                employerEmail: 'coaching@activekidssports.com.au',
+                interviewRequirements: ['Bring WWC Check or be prepared to apply', 'Wear sports attire to demonstrate activities', 'Bring copies of any relevant certifications', 'Be ready to lead a short activity demonstration'],
+                titleImage: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400',
+                    'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400',
+                    'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400',
+                    'https://images.unsplash.com/photo-1526676037777-05a232554f77?w=400'
+                ]
+            },
+            'Cashier': {
+                company: 'Coles',
+                verified: true,
+                location: 'Chatswood Chase, Chatswood NSW',
+                pay: '$17/hr',
+                jobType: 'Part-time',
+                age: '16+ years',
+                description: 'Coles Chatswood is seeking friendly and reliable cashiers to join our team. Enjoy employee discounts and flexible rostering that works around your schedule. Great opportunity to develop customer service skills in a supportive retail environment. Full training provided on our point-of-sale systems. Team members also receive staff discounts and opportunities for career progression.',
+                requirements: ['Customer service skills', 'Basic computer skills', 'Reliable and punctual', 'Available for weekend shifts', 'Cash handling experience beneficial'],
+                employerName: 'Rachel Kumar',
+                employerEmail: 'hr.chatswood@coles.com.au',
+                interviewRequirements: ['Bring 2 forms of ID', 'Resume showing any previous work experience', 'References from school or previous employers', 'Dress in neat business casual'],
+                titleImage: 'https://images.unsplash.com/photo-1556740714-a8395b3bf30f?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1556740714-a8395b3bf30f?w=400',
+                    'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=400',
+                    'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=400'
+                ]
+            },
+            'Retail Assistant': {
+                company: 'Kmart',
+                verified: true,
+                location: 'Westfield Sydney, Sydney CBD NSW',
+                pay: '$19/hr',
+                jobType: 'Casual',
+                age: '16+ years',
+                description: 'Join Kmart as a Retail Assistant! Help customers find what they need, maintain store presentation, and be part of a supportive team environment. Great staff discounts available on all Kmart products! This role involves customer service, stock replenishment, and keeping the store looking its best. Perfect for students with flexible availability.',
+                requirements: ['Friendly and helpful attitude', 'Ability to work as part of a team', 'Physical fitness for lifting and moving stock', 'Flexible availability including weekends', 'Retail experience beneficial but not required'],
+                employerName: 'Amanda Wong',
+                employerEmail: 'recruitment.sydney@kmart.com.au',
+                interviewRequirements: ['Arrive 10 minutes early', 'Bring valid proof of age', 'Dress in business casual (neat and tidy)', 'Prepare examples of good customer service'],
+                titleImage: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400',
+                    'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400',
+                    'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400',
+                    'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400'
+                ]
+            },
+            'Tutor for 8 year old': {
+                company: 'Private business',
+                verified: false,
+                location: 'Chatswood, private residence',
+                pay: '$15/hr',
+                jobType: 'Casual',
+                age: '16+ years',
+                description: 'Seeking a patient and friendly tutor to help our 8-year-old with homework and reading comprehension. Sessions would be 2-3 times per week after school. Great opportunity for those considering teaching as a career!',
+                requirements: ['Tutoring experience preferred', 'Good communication with children', 'Patient and encouraging', 'WWC Check required'],
+                employerName: 'Jennifer Liu',
+                employerEmail: 'jliu.tutor@gmail.com',
+                interviewRequirements: ['Meet at local cafe for informal chat', 'Bring WWC Check', 'Discuss teaching methods and approach', 'References required'],
+                titleImage: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400',
+                    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400'
+                ]
+            },
+            'Casual Babysitter': {
+                company: 'Private business',
+                verified: true,
+                location: 'Eastwood, private residence',
+                pay: '$20/hr',
+                jobType: 'Casual',
+                age: '14+ years',
+                description: 'Reliable babysitter needed for occasional evenings and weekends. Two children aged 5 and 7. Must be responsible, caring, and able to prepare simple meals. References required.',
+                requirements: ['No experience required', 'Training provided', 'WWC Check required', 'First Aid beneficial'],
+                employerName: 'Mark & Susan Anderson',
+                employerEmail: 'anderson.family@outlook.com',
+                interviewRequirements: ['Meet parents and children first', 'Provide 2 references', 'WWC Check or willingness to obtain', 'Discuss emergency procedures'],
+                titleImage: 'https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=400',
+                    'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400'
+                ]
+            },
+            'Kitchen Hand': {
+                company: 'The Local Cafe',
+                verified: true,
+                location: 'Newtown, King St',
+                pay: '$18/hr',
+                jobType: 'Casual',
+                age: '16+ years',
+                description: 'Busy cafe in Newtown seeking a reliable kitchen hand to assist with food prep, dishwashing, and general kitchen duties. Great team environment with staff meals included!',
+                requirements: ['Weekend shifts available', 'No experience required', 'Food safety certificate beneficial', 'Team player'],
+                employerName: 'Tony Nguyen',
+                employerEmail: 'tony@thelocalcafe.com.au',
+                interviewRequirements: ['Visit cafe during quiet hours (2-4pm)', 'Wear closed-toe shoes', 'Be prepared to discuss availability', 'Casual interview over coffee'],
+                titleImage: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400',
+                    'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=400',
+                    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400'
+                ]
+            },
+            'Delivery Driver': {
+                company: 'UberEats',
+                verified: false,
+                location: 'Sydney CBD',
+                pay: '$25/hr + tips',
+                jobType: 'Casual',
+                age: '18+ years',
+                description: 'Join UberEats as a delivery driver! Set your own hours, earn great money, and enjoy the flexibility of being your own boss. Must have own vehicle and smartphone.',
+                requirements: ['Own vehicle required', 'Flexible hours', 'Valid driver\'s license', 'Smartphone required'],
+                employerName: 'UberEats Onboarding Team',
+                employerEmail: 'partner@uber.com',
+                interviewRequirements: ['Complete online application first', 'Valid driver license and vehicle registration', 'Proof of insurance', 'Background check will be conducted'],
+                titleImage: 'https://images.unsplash.com/photo-1526367790999-0150786686a2?w=800',
+                images: [
+                    'https://images.unsplash.com/photo-1526367790999-0150786686a2?w=400',
+                    'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400'
+                ]
+            }
+        };
+
+        // ===================================
+        // SEARCH FUNCTIONALITY
+        // ===================================
+        const searchInput = document.querySelector('.search-input');
+        const searchBtn = document.querySelector('.search-btn');
+
+        // Search on button click
+        searchBtn.addEventListener('click', function() {
+            performSearch();
+        });
+
+        // Search on Enter key press
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            
+            // Get all job cards
+            const jobCards = document.querySelectorAll('.job-card');
+            let visibleCount = 0;
+            
+            jobCards.forEach(card => {
+                const title = card.querySelector('.job-title').textContent.toLowerCase();
+                const companyElement = card.querySelector('.job-company span');
+                const company = companyElement ? companyElement.textContent.toLowerCase() : '';
+                const locationElement = card.querySelector('.job-location');
+                const location = locationElement ? locationElement.textContent.toLowerCase() : '';
+                
+                // If search term is empty, show all
+                if (searchTerm === '') {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    // Check if search term matches any field
+                    if (title.includes(searchTerm) || 
+                        company.includes(searchTerm) || 
+                        location.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.4s ease-out';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+            
+            console.log(`Found ${visibleCount} jobs matching "${searchTerm}"`);
+        }
+
+        // Real-time search as user types
+        searchInput.addEventListener('input', function() {
+            performSearch();
+        });
+
+        // ===================================
+        // JOB CARD CLICK FUNCTIONALITY WITH MODAL
+        // ===================================
+        const jobCards = document.querySelectorAll('.job-card');
+        const modal = document.getElementById('jobModal');
+        const modalBack = document.querySelector('.modal-back');
+        const modalBookmark = document.getElementById('modalBookmark');
+        let currentJobTitle = '';
+        let savedJobs = new Set();
+
+        jobCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const jobTitle = this.querySelector('.job-title').textContent;
+                const data = jobData[jobTitle];
+                
+                if (!data) {
+                    console.error('Job data not found for:', jobTitle);
+                    return;
+                }
+                
+                currentJobTitle = jobTitle;
+                
+                // Populate modal with job data
+                document.getElementById('modalJobTitle').textContent = jobTitle;
+                document.getElementById('modalCompany').textContent = data.company;
+                document.getElementById('modalVerified').style.display = data.verified ? 'inline-flex' : 'none';
+                document.getElementById('modalLocationText').textContent = data.location;
+                document.getElementById('modalPay').textContent = data.pay;
+                document.getElementById('modalJobType').textContent = data.jobType;
+                document.getElementById('modalAge').textContent = data.age;
+                document.getElementById('modalDescription').textContent = data.description;
+                
+                // Populate employer info
+                document.getElementById('modalEmployerName').textContent = data.employerName || 'Not provided';
+                document.getElementById('modalEmployerEmail').textContent = data.employerEmail || 'Not provided';
+                
+                // Update bookmark button state
+                if (savedJobs.has(jobTitle)) {
+                    modalBookmark.classList.add('bookmarked');
+                } else {
+                    modalBookmark.classList.remove('bookmarked');
+                }
+                
+                // Populate requirements
+                const requirementsList = document.getElementById('modalRequirements');
+                requirementsList.innerHTML = '';
+                data.requirements.forEach(req => {
+                    const li = document.createElement('li');
+                    li.textContent = req;
+                    requirementsList.appendChild(li);
+                });
+                
+                // Populate interview requirements
+                const interviewReqsList = document.getElementById('modalInterviewReqs');
+                interviewReqsList.innerHTML = '';
+                if (data.interviewRequirements) {
+                    data.interviewRequirements.forEach(req => {
+                        const li = document.createElement('li');
+                        li.textContent = req;
+                        interviewReqsList.appendChild(li);
+                    });
+                }
+                
+                // Populate title image
+                const titleImageContainer = document.getElementById('modalTitleImage');
+                if (data.titleImage) {
+                    titleImageContainer.style.backgroundImage = `url('${data.titleImage}')`;
+                    titleImageContainer.classList.add('visible');
+                } else {
+                    titleImageContainer.classList.remove('visible');
+                }
+                
+                // Populate images
+                const imagesContainer = document.getElementById('modalImages');
+                imagesContainer.innerHTML = '';
+                
+                if (data.images && data.images.length > 0) {
+                    const imagesToShow = data.images.slice(0, 3);
+                    imagesToShow.forEach((img, index) => {
+                        const imgDiv = document.createElement('div');
+                        imgDiv.className = 'modal-image';
+                        imgDiv.style.backgroundImage = `url('${img}')`;
+                        imagesContainer.appendChild(imgDiv);
+                    });
+                    
+                    // Add +X indicator if more than 3 images
+                    if (data.images.length > 3) {
+                        const moreDiv = document.createElement('div');
+                        moreDiv.className = 'modal-image more-images';
+                        moreDiv.textContent = `+${data.images.length - 3}`;
+                        imagesContainer.appendChild(moreDiv);
+                    }
+                }
+                
+                // Show modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Bookmark functionality
+        modalBookmark.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (savedJobs.has(currentJobTitle)) {
+                // Remove from saved
+                savedJobs.delete(currentJobTitle);
+                modalBookmark.classList.remove('bookmarked');
+                
+                // Find and update the job card
+                const jobCard = document.querySelector(`[data-job-title="${currentJobTitle}"]`);
+                if (jobCard) {
+                    jobCard.classList.remove('saved');
+                }
+            } else {
+                // Add to saved
+                savedJobs.add(currentJobTitle);
+                modalBookmark.classList.add('bookmarked');
+                
+                // Find and update the job card
+                const jobCard = document.querySelector(`[data-job-title="${currentJobTitle}"]`);
+                if (jobCard) {
+                    jobCard.classList.add('saved');
+                }
+            }
+            
+            console.log('Saved jobs:', Array.from(savedJobs));
+        });
+
+        jobCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const jobTitle = this.querySelector('.job-title').textContent;
+                const data = jobData[jobTitle];
+                
+                if (!data) {
+                    console.error('Job data not found for:', jobTitle);
+                    return;
+                }
+                
+                // Populate modal with job data
+                document.getElementById('modalJobTitle').textContent = jobTitle;
+                document.getElementById('modalCompany').textContent = data.company;
+                document.getElementById('modalVerified').style.display = data.verified ? 'inline-flex' : 'none';
+                document.getElementById('modalLocationText').textContent = data.location;
+                document.getElementById('modalPay').textContent = data.pay;
+                document.getElementById('modalJobType').textContent = data.jobType;
+                document.getElementById('modalAge').textContent = data.age;
+                document.getElementById('modalDescription').textContent = data.description;
+                
+                // Populate requirements
+                const requirementsList = document.getElementById('modalRequirements');
+                requirementsList.innerHTML = '';
+                data.requirements.forEach(req => {
+                    const li = document.createElement('li');
+                    li.textContent = req;
+                    requirementsList.appendChild(li);
+                });
+                
+                // Populate images
+                const imagesContainer = document.getElementById('modalImages');
+                imagesContainer.innerHTML = '';
+                
+                if (data.images && data.images.length > 0) {
+                    const imagesToShow = data.images.slice(0, 3);
+                    imagesToShow.forEach((img, index) => {
+                        const imgDiv = document.createElement('div');
+                        imgDiv.className = 'modal-image';
+                        imgDiv.style.backgroundImage = `url('${img}')`;
+                        imagesContainer.appendChild(imgDiv);
+                    });
+                    
+                    // Add +X indicator if more than 3 images
+                    if (data.images.length > 3) {
+                        const moreDiv = document.createElement('div');
+                        moreDiv.className = 'modal-image more-images';
+                        moreDiv.textContent = `+${data.images.length - 3}`;
+                        imagesContainer.appendChild(moreDiv);
+                    }
+                }
+                
+                // Show modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close modal functionality
+        modalBack.addEventListener('click', closeModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Apply button functionality
+        document.querySelector('.modal-apply-btn').addEventListener('click', function() {
+            const jobTitle = document.getElementById('modalJobTitle').textContent;
+            alert(`Application submitted for: ${jobTitle}\n\nThank you for your interest! We'll be in touch soon.`);
+            closeModal();
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // ===================================
+        // MOBILE MENU FUNCTIONALITY
+        // ===================================
+        const menuIcon = document.querySelector('.menu-icon');
+
+        menuIcon.addEventListener('click', function() {
+            console.log('Menu icon clicked');
+            alert('Mobile menu would open here!\n\nFeatures:\n• Profile\n• Saved Jobs\n• Applications\n• Resources\n• Settings');
+        });
+
+        // ===================================
+        // PROFILE ICON FUNCTIONALITY
+        // ===================================
+        const profileIcon = document.querySelector('.profile-icon');
+
+        profileIcon.addEventListener('click', function() {
+            console.log('Profile icon clicked');
+            alert('Profile menu would open here!\n\nOptions:\n• View Profile\n• Settings\n• Saved Jobs\n• Applications\n• Log Out');
+        });
+
+        // ===================================
+        // KEYBOARD ACCESSIBILITY
+        // ===================================
+        document.addEventListener('keydown', function(e) {
+            // Quick search with Ctrl/Cmd + K
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+                console.log('Quick search activated');
+            }
+        });
+
+        // ===================================
+        // FILTER TAB FUNCTIONALITY
+        // ===================================
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                filterTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Get the tab name
+                const tabName = this.textContent.trim();
+                
+                console.log(`Switched to ${tabName} tab`);
+                
+                // Filter job cards based on tab
+                const allJobCards = document.querySelectorAll('.job-card');
+                
+                if (tabName === 'saved') {
+                    // Show only saved jobs
+                    allJobCards.forEach(card => {
+                        const jobTitle = card.getAttribute('data-job-title');
+                        if (savedJobs.has(jobTitle)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                } else if (tabName === 'pending') {
+                    // For now, hide all jobs (you can implement pending jobs later)
+                    allJobCards.forEach(card => {
+                        card.style.display = 'none';
+                    });
+                    console.log('Pending applications feature coming soon!');
+                } else {
+                    // "for you" tab - show all jobs
+                    allJobCards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                }
+            });
+        });
+
+        console.log('🎉 Redumé website loaded successfully!');
+        
+        }); // End of DOMContentLoaded
+    </script>
+</body>
+</html>
